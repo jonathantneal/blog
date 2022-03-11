@@ -204,36 +204,50 @@ blockquote {
 	border-left: 3px solid rgb(55, 53, 47);
 }
 
-.q-n-a {
-	margin-block: 1em;
+.block {
+	margin-block: 1.25em;
 }
 
-.q-n-a p {
+.block p {
 	margin-block: 0;
+}
+
+.block > p:not(:last-child) {
+	margin-block-end: .5em;
+}
+
+.block > p:not(:first-child) {
+	margin-block-start: .5em;
+}
+
+p + .indented {
+	margin-block-start: -.25em;
 }
 
 .indented {
 	padding-inline-start: 1.5em;
 }
 
-.indented p {
-	margin-block: 0.5em;
+.indented p:not(:first-child) {
+	margin-block-end: 0.5em;
+}
+
+.indented p:not(:last-child) {
+	margin-block-start: 0.5em;
 }
 </style>
 </head>
 <body>
-	<header>
-		<h1>What are Scrollbars?</h1>
-	</header>
-	<div class="q-n-a">
+	<h1>What are Scrollbars?</h1>
+	<div class="block">
 		<p><strong>Question</strong>: What happens on a webpage when the text is too long for the window?</p>
 		<p><strong>Answer</strong>: The window becomes scrollable.</p>
 	</div>
-	<div class="q-n-a">
+	<div class="block">
 		<p><strong>Question</strong>: As the page is scrolled, what usually appears near the window edge?</p>
 		<p><strong>Answer</strong>: A scrollbar.</p>
 	</div>
-	<div class="q-n-a">
+	<div class="block">
 		<p><strong>Question</strong>: What does the scrollbar do?</p>
 		<p><strong>Answer</strong>:</p>
 		<div class="indented">
@@ -243,32 +257,37 @@ blockquote {
 			<p>Scrollbars can be manipulated. There are JavaScript APIs to get and set the scroll position There are CSS rules to change how they are styled.</p>
 		</div>
 	</div>
-	<div class="q-n-a">
+	<div class="block">
 		<p><strong>Question</strong>: Are scrollbars available to more than the window?</p>
 		<p><strong>Answer</strong>: Yes. Almost any area in a webpage can do this.</p>
 	</div>
-	<div class="q-n-a">
+	<div class="block">
 		<p><strong>Question</strong>: What element needs to be written to do this?</p>
 		<p><strong>Answer</strong>: No element is written to do this. It is generated automatically, or manually with CSS.</p>
 	</div>
 	<p>🤨</p>
-	<div class="q-n-a">
+	<div class="block">
 		<p><strong>Question</strong>: If it has an interface, API, and can be styled, then why is it not written as an element?</p>
 		<p><strong>Answer</strong>: It’s not written as an element because it’s not content, and because it’s conditional.</p>
 	</div>
-	<div class="q-na">
+	<div class="block">
 		<p><strong>Question</strong>: What is an element that is conditional and not written out?</p>
-		<p><strong>Answer</strong>:<div class="indented"><p>This kind of element is an <strong>affordance</strong>.</p><p>An affordance is how something makes itself clear how to use it.</p>
+		<p><strong>Answer</strong>:</p>
+		<div class="indented">
+			<p>This kind of element is an <strong>affordance</strong>.</p>
+			<p>An affordance is how something makes itself clear how to use it.</p>
+		</div>
 	</div>
-	<div class="q-n-a">
+	<div class="block">
 		<p><strong>Question</strong>: Are there other affordances than scrollbars in webpages?</p>
 		<p><strong>Answer</strong>: Yes. Most webpages use more affordances than just scrollbars.</p>
 	</div>
-	<div class="q-n-a">
+	<div class="block">
 		<p><strong>Question</strong>: What is another common affordance?</p>
 		<p><strong>Answer</strong>: Most responsive websites use a ‘hamburger’ affordance to navigate menus on small screens.</p>
 	</div>
-	<div class="q-n-a">
+	<p>&nbsp;</p>
+	<div class="block">
 		<p><strong>Question</strong>: Am I a ”strawman”?</p>
 		<p><strong>Answer</strong>: Yes.</p>
 	</div>
