@@ -1,10 +1,9 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>What are Scrollbars?
 </title><style>
-/* cspell:disable-file */
-/* webkit printing magic: print all background colors */
 html {
 	-webkit-print-color-adjust: exact;
 }
+
 * {
 	box-sizing: border-box;
 	-webkit-print-color-adjust: exact;
@@ -15,28 +14,24 @@ body {
 	margin: 0;
 	padding: 0;
 }
-@media only screen {
+
+body {
+	font: 100%/1.5 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@media screen {
 	body {
-		margin: 2em auto;
-		max-width: 900px;
 		color: rgb(55, 53, 47);
+		margin-block: 2em;
+		margin-inline: auto;
+		padding-inline: 2em;
+		max-width: 34rem;
 	}
 }
 
-body {
-	line-height: 1.5;
-	white-space: pre-wrap;
-}
-
-a,
-a.visited {
+a, a.visited {
 	color: inherit;
 	text-decoration: underline;
-}
-
-.pdf-relative-link-path {
-	font-size: 80%;
-	color: #444;
 }
 
 h1,
@@ -48,16 +43,11 @@ h3 {
 	margin-bottom: 0;
 }
 
-.page-title {
+h1 {
 	font-size: 2.5rem;
 	font-weight: 700;
 	margin-top: 0;
 	margin-bottom: 0.75em;
-}
-
-h1 {
-	font-size: 1.875rem;
-	margin-top: 1.875rem;
 }
 
 h2 {
@@ -97,10 +87,6 @@ mark {
 	background-color: transparent;
 }
 
-.indented {
-	padding-left: 1.5em;
-}
-
 hr {
 	background: transparent;
 	display: block;
@@ -115,7 +101,7 @@ img {
 	max-width: 100%;
 }
 
-@media only print {
+@media print {
 	img {
 		max-height: 100vh;
 		object-fit: contain;
@@ -124,52 +110,6 @@ img {
 
 @page {
 	margin: 1in;
-}
-
-.collection-content {
-	font-size: 0.875rem;
-}
-
-.column-list {
-	display: flex;
-	justify-content: space-between;
-}
-
-.column {
-	padding: 0 1em;
-}
-
-.column:first-child {
-	padding-left: 0;
-}
-
-.column:last-child {
-	padding-right: 0;
-}
-
-.table_of_contents-item {
-	display: block;
-	font-size: 0.875rem;
-	line-height: 1.3;
-	padding: 0.125rem;
-}
-
-.table_of_contents-indent-1 {
-	margin-left: 1.5rem;
-}
-
-.table_of_contents-indent-2 {
-	margin-left: 3rem;
-}
-
-.table_of_contents-indent-3 {
-	margin-left: 4.5rem;
-}
-
-.table_of_contents-link {
-	text-decoration: none;
-	opacity: 0.7;
-	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
 }
 
 table,
@@ -213,23 +153,6 @@ ul > li {
 	list-style: disc;
 }
 
-ul.to-do-list {
-	text-indent: -1.7em;
-}
-
-ul.to-do-list > li {
-	list-style: none;
-}
-
-.to-do-children-checked {
-	text-decoration: line-through;
-	opacity: 0.375;
-}
-
-ul.toggle > li {
-	list-style: none;
-}
-
 ul {
 	padding-inline-start: 1.7em;
 }
@@ -246,123 +169,8 @@ ol > li {
 	padding-left: 0.2em;
 }
 
-.mono ol {
-	padding-inline-start: 2em;
-}
-
-.mono ol > li {
-	text-indent: -0.4em;
-}
-
-.toggle {
-	padding-inline-start: 0em;
-	list-style-type: none;
-}
-
-/* Indent toggle children */
-.toggle > li > details {
-	padding-left: 1.7em;
-}
-
-.toggle > li > details > summary {
-	margin-left: -1.1em;
-}
-
-.selected-value {
-	display: inline-block;
-	padding: 0 0.5em;
-	background: rgba(206, 205, 202, 0.5);
-	border-radius: 3px;
-	margin-right: 0.5em;
-	margin-top: 0.3em;
-	margin-bottom: 0.3em;
-	white-space: nowrap;
-}
-
-.collection-title {
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.simple-table {
-	margin-top: 1em;
-	font-size: 0.875rem;
-}
-
-.simple-table-header {
-	background: rgb(247, 246, 243);
-	color: black;
-	font-weight: 500;
-}
-
 time {
 	opacity: 0.5;
-}
-
-.icon {
-	display: inline-block;
-	max-width: 1.2em;
-	max-height: 1.2em;
-	text-decoration: none;
-	vertical-align: text-bottom;
-	margin-right: 0.5em;
-}
-
-img.icon {
-	border-radius: 3px;
-}
-
-.user-icon {
-	width: 1.5em;
-	height: 1.5em;
-	border-radius: 100%;
-	margin-right: 0.5rem;
-}
-
-.user-icon-inner {
-	font-size: 0.8em;
-}
-
-.text-icon {
-	border: 1px solid #000;
-	text-align: center;
-}
-
-.page-cover-image {
-	display: block;
-	object-fit: cover;
-	width: 100%;
-	max-height: 30vh;
-}
-
-.page-header-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
-}
-
-.page-header-icon-with-cover {
-	margin-top: -0.72em;
-	margin-left: 0.07em;
-}
-
-.page-header-icon img {
-	border-radius: 3px;
-}
-
-.link-to-page {
-	margin: 1em 0;
-	padding: 0;
-	border: none;
-	font-weight: 500;
-}
-
-p > .user {
-	opacity: 0.5;
-}
-
-td > .user,
-td > time {
-	white-space: nowrap;
 }
 
 input[type="checkbox"] {
@@ -376,15 +184,6 @@ p {
 	margin-bottom: 0.5em;
 }
 
-.image {
-	border: none;
-	margin: 1.5em 0;
-	padding: 0;
-	border-radius: 0;
-	text-align: center;
-}
-
-.code,
 code {
 	background: rgba(135, 131, 120, 0.15);
 	border-radius: 3px;
@@ -398,22 +197,6 @@ code {
 	color: #eb5757;
 }
 
-.code {
-	padding: 1.5em 1em;
-}
-
-.code-wrap {
-	white-space: pre-wrap;
-	word-break: break-all;
-}
-
-.code > code {
-	background: none;
-	padding: 0;
-	font-size: 100%;
-	color: inherit;
-}
-
 blockquote {
 	font-size: 1.25em;
 	margin: 1em 0;
@@ -421,258 +204,73 @@ blockquote {
 	border-left: 3px solid rgb(55, 53, 47);
 }
 
-.bookmark {
-	text-decoration: none;
-	max-height: 8em;
-	padding: 0;
-	display: flex;
-	width: 100%;
-	align-items: stretch;
+.q-n-a {
+	margin-block: 1em;
 }
 
-.bookmark-title {
-	font-size: 0.85em;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 1.75em;
-	white-space: nowrap;
+.q-n-a p {
+	margin-block: 0;
 }
 
-.bookmark-text {
-	display: flex;
-	flex-direction: column;
+.indented {
+	padding-inline-start: 1.5em;
 }
 
-.bookmark-info {
-	flex: 4 1 180px;
-	padding: 12px 14px 14px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+.indented p {
+	margin-block: 0.5em;
 }
-
-.bookmark-image {
-	width: 33%;
-	flex: 1 1 180px;
-	display: block;
-	position: relative;
-	object-fit: cover;
-	border-radius: 1px;
-}
-
-.bookmark-description {
-	color: rgba(55, 53, 47, 0.6);
-	font-size: 0.75em;
-	overflow: hidden;
-	max-height: 4.5em;
-	word-break: break-word;
-}
-
-.bookmark-href {
-	font-size: 0.75em;
-	margin-top: 0.25em;
-}
-
-.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
-.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
-.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
-.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
-.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
-.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
-.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
-.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
-.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
-.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
-.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
-.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
-.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
-.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
-.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
-.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
-.highlight-default {
-	color: rgba(55, 53, 47, 1);
-}
-.highlight-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.highlight-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.highlight-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.highlight-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.highlight-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.highlight-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.highlight-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.highlight-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.highlight-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.highlight-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.highlight-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.highlight-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.highlight-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.highlight-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.highlight-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.highlight-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.highlight-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.highlight-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.block-color-default {
-	color: inherit;
-	fill: inherit;
-}
-.block-color-gray {
-	color: rgba(120, 119, 116, 1);
-	fill: rgba(120, 119, 116, 1);
-}
-.block-color-brown {
-	color: rgba(159, 107, 83, 1);
-	fill: rgba(159, 107, 83, 1);
-}
-.block-color-orange {
-	color: rgba(217, 115, 13, 1);
-	fill: rgba(217, 115, 13, 1);
-}
-.block-color-yellow {
-	color: rgba(203, 145, 47, 1);
-	fill: rgba(203, 145, 47, 1);
-}
-.block-color-teal {
-	color: rgba(68, 131, 97, 1);
-	fill: rgba(68, 131, 97, 1);
-}
-.block-color-blue {
-	color: rgba(51, 126, 169, 1);
-	fill: rgba(51, 126, 169, 1);
-}
-.block-color-purple {
-	color: rgba(144, 101, 176, 1);
-	fill: rgba(144, 101, 176, 1);
-}
-.block-color-pink {
-	color: rgba(193, 76, 138, 1);
-	fill: rgba(193, 76, 138, 1);
-}
-.block-color-red {
-	color: rgba(212, 76, 71, 1);
-	fill: rgba(212, 76, 71, 1);
-}
-.block-color-gray_background {
-	background: rgba(241, 241, 239, 1);
-}
-.block-color-brown_background {
-	background: rgba(244, 238, 238, 1);
-}
-.block-color-orange_background {
-	background: rgba(251, 236, 221, 1);
-}
-.block-color-yellow_background {
-	background: rgba(251, 243, 219, 1);
-}
-.block-color-teal_background {
-	background: rgba(237, 243, 236, 1);
-}
-.block-color-blue_background {
-	background: rgba(231, 243, 248, 1);
-}
-.block-color-purple_background {
-	background: rgba(244, 240, 247, 0.8);
-}
-.block-color-pink_background {
-	background: rgba(249, 238, 243, 0.8);
-}
-.block-color-red_background {
-	background: rgba(253, 235, 236, 1);
-}
-.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
-.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
-.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
-.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
-.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
-.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
-.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
-.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
-.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
-.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
-
-.checkbox {
-	display: inline-flex;
-	vertical-align: text-bottom;
-	width: 16;
-	height: 16;
-	background-size: 16px;
-	margin-left: 2px;
-	margin-right: 5px;
-}
-
-.checkbox-on {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-
-.checkbox-off {
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
-}
-	
-</style></head><body><article id="ba141cb6-9531-4ad1-a2c6-9b62a2dae23a" class="page sans"><header><h1 class="page-title">What are Scrollbars?
-</h1></header><div class="page-body"><p id="4e1b60c0-03e9-4c12-8e65-fc08bed5a02c" class=""><strong>Question</strong>: What happens on a webpage when the text is too long for the window?
-<strong>Answer</strong>: The window becomes scrollable.</p><p id="a7d22b5f-35f9-449f-a705-4e8b5aba882a" class="">
-</p><p id="7b607aa0-f411-45d7-8f43-3ae237dc6550" class=""><strong>Question</strong>: As the page is scrolled, what usually appears near the window edge?
-<strong>Answer</strong>: A scrollbar.</p><p id="bb232503-45f9-469d-857d-83a8663cb4a9" class="">
-</p><p id="a6c140f1-2b1a-4277-98e2-f6e3a9b5d386" class=""><strong>Question</strong>: What does the scrollbar do?
-<strong>Answer</strong>:<div class="indented"><p id="7ae7fcfc-ab3d-43b0-8a28-2dc17a93ea77" class="">Scrollbars show the current position of where the webpage is scrolled.</p><p id="72b45f43-051c-42ab-a052-e9968c715cef" class="">Scrollbars also have behaviors.</p><p id="5a0d50eb-57e6-49ef-a458-52c800fe3514" class="">Scrollbars can be interactive. A finger or cursor can usually drag them to scroll more rapidly thru a page. Pushing the spacebar usually scrolls the page forward.</p><p id="1b0be78c-7637-43bd-b4b0-8470a1cba07f" class="">Scrollbars can be manipulated. There are JavaScript APIs to get and set the scroll position There are CSS rules to change how they are styled.</p></div></p><p id="db3f0bd9-338a-41bb-bf39-bb406ed3311b" class="">
-<strong>Question</strong>: Are scrollbars available to more than the window?
-<strong>Answer</strong>: Yes. Almost any area in a webpage can do this.</p><p id="e14b81f4-7833-448a-9e67-251ca39d9454" class="">
-</p><p id="482841f3-ac62-48dc-98be-12c411151fca" class=""><strong>Question</strong>: What element needs to be written to do this?
-<strong>Answer</strong>: No element is written to do this. It is generated automatically, or manually with CSS.</p><p id="772ab7f8-ad6b-4698-b6b0-88f101579bfd" class="">
-</p><p id="ff390851-494a-4d21-935d-462afe274843" class="">🤨</p><p id="801223c3-9a2d-4587-b119-81d8092fe7ed" class="">
-</p><p id="5fe781ea-1ff5-4573-afe2-2eebfb31e62a" class=""><strong>Question</strong>: If it has an interface, API, and can be styled, then why is it not written as an element?
-<strong>Answer</strong>: It’s not written as an element because it’s not content, and because it’s conditional.</p><p id="f81dbeb8-bea0-4c4d-add1-4bd0a78b3eff" class="">
-</p><p id="252f24bd-ba8a-408d-a4b9-cc5e0477eda4" class=""><strong>Question</strong>: What is an element that is conditional and not written out?
-<strong>Answer</strong>:<div class="indented"><p id="8fa79635-edf7-4f03-aeb2-dbc85bc11d1b" class="">This kind of element is an <strong>affordance</strong>.</p><p id="bfbe2646-772a-4642-9536-8bad8c6a1e9b" class="">An affordance is how something makes itself clear how to use it.</p></div></p><p id="65210b4c-38ae-4026-9495-4f8680b8dcf8" class="">
-</p><p id="e725a08a-cddf-4d23-b0e6-5e9f3a51dfe1" class=""><strong>Question</strong>: Are there other affordances than scrollbars in webpages?
-<strong>Answer</strong>: Yes. Most webpages use more affordances than just scrollbars.</p><p id="3ba5f70c-9199-4298-bcdc-5edde64782d5" class="">
-</p><p id="581bb7af-8e31-4dec-a4e4-787d479e22d4" class=""><strong>Question</strong>: What is another common affordance?
-<strong>Answer</strong>: Most responsive websites use a ‘hamburger’ affordance to navigate menus on small screens.</p><p id="69c0cb20-d7e6-4bcf-a467-a72ee60e1815" class="">
-</p><p id="a4847a80-4b3e-403a-854f-f5e1294faa6c" class=""><strong>Question</strong>: Am I a ”strawman”?</p><p id="4d97f4b1-e371-4068-916e-a5a5db63ce5a" class=""><strong>Answer</strong>: Yes.</p></div></article></body></html>
+</style>
+</head>
+<body>
+	<header>
+		<h1>What are Scrollbars?</h1>
+	</header>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: What happens on a webpage when the text is too long for the window?</p>
+		<p><strong>Answer</strong>: The window becomes scrollable.</p>
+	</div>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: As the page is scrolled, what usually appears near the window edge?</p>
+		<p><strong>Answer</strong>: A scrollbar.</p>
+	</div>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: What does the scrollbar do?</p>
+		<p><strong>Answer</strong>:</p>
+		<div class="indented">
+			<p>Scrollbars show the current position of where the webpage is scrolled.</p>
+			<p>Scrollbars also have behaviors.</p>
+			<p>Scrollbars can be interactive. A finger or cursor can usually drag them to scroll more rapidly thru a page. Pushing the spacebar usually scrolls the page forward.</p>
+			<p>Scrollbars can be manipulated. There are JavaScript APIs to get and set the scroll position There are CSS rules to change how they are styled.</p>
+		</div>
+	</div>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: Are scrollbars available to more than the window?</p>
+		<p><strong>Answer</strong>: Yes. Almost any area in a webpage can do this.</p>
+	</div>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: What element needs to be written to do this?</p>
+		<p><strong>Answer</strong>: No element is written to do this. It is generated automatically, or manually with CSS.</p>
+	</div>
+	<p>🤨</p>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: If it has an interface, API, and can be styled, then why is it not written as an element?</p>
+		<p><strong>Answer</strong>: It’s not written as an element because it’s not content, and because it’s conditional.</p>
+	</div>
+	<div class="q-na">
+		<p><strong>Question</strong>: What is an element that is conditional and not written out?</p>
+		<p><strong>Answer</strong>:<div class="indented"><p>This kind of element is an <strong>affordance</strong>.</p><p>An affordance is how something makes itself clear how to use it.</p>
+	</div>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: Are there other affordances than scrollbars in webpages?</p>
+		<p><strong>Answer</strong>: Yes. Most webpages use more affordances than just scrollbars.</p>
+	</div>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: What is another common affordance?</p>
+		<p><strong>Answer</strong>: Most responsive websites use a ‘hamburger’ affordance to navigate menus on small screens.</p>
+	</div>
+	<div class="q-n-a">
+		<p><strong>Question</strong>: Am I a ”strawman”?</p>
+		<p><strong>Answer</strong>: Yes.</p>
+	</div>
+</body>
+</html>
