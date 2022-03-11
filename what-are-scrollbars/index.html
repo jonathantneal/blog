@@ -239,10 +239,28 @@ p + .indented {
 .indented p:not(:last-child) {
 	margin-block-start: 0.5em;
 }
+
+.abstract {
+	font-size: 1.25em;
+	font-weight: 300;
+	opacity: 0.85;
+	padding-inline: 1em;
+}
 		</style>
 	</head>
 	<body>
-		<h1>What are Scrollbars?</h1>
+		<h1>
+			What are Scrollbars?
+		</h1>
+		<p class="abstract">
+			Scrollbars are elements, but you won’t find them in the source code of a page.
+		</p>
+		<p class="abstract">
+			You can interact with them, style them, and they even have an API, just like a component.
+		</p>
+		<p class="abstract">
+			So what are they?
+		</p>
 		<div class="block">
 			<p><strong>Question</strong>: What happens on a webpage when the text is too long for the window?</p>
 			<p><strong>Answer</strong>: The window becomes scrollable.</p>
