@@ -267,10 +267,20 @@ p + .indented {
 			What are Scrollbars?
 		</h1>
 		<p class="abstract">
-			Scrollbars are like components, but you won’t find them in the source code of a page.
+			Scrollbars are elements, but there is no <code>&lt;scrollbar&gt;</code> element.
 		</p>
 		<p class="abstract">
-			If we reinvented them, would you?
+			There is no <code>&lt;scroll&gt;</code> element, either.
+			And we wouldn’t want one.
+		</p>
+		<p class="abstract">
+			We make <em>other things</em> scrollable.
+		</p>
+		<p class="abstract">
+			We give <em>other things</em> scrollbars.
+		</p>
+		<p class="abstract">
+			Scrollbars are something different.
 		</p>
 		<div class="block">
 			<p>
@@ -285,23 +295,23 @@ p + .indented {
 			<p>What do scrollbar do?</p>
 			<div class="abstract">
 				<p>
-					Scrollbars show where a visible area exists in the context of a larger, invisible area.
+					Scrollbars show where a visible area is positioned in the context of a larger, invisible area.
 				</p>
 			</div>
 			<div class="abstract">
 				<p>
-					As the visible area is moved, scrollbars reflect this change in tandem.
+					As we scroll and the visible area shifts, scrollbars reflect the change.
 				</p>
 			</div>
 			<div class="abstract">
 				<p>
-					Scrollbars are interactive, too.
-					They can be dragged with a pointer to rapidly move thru the entire area they cover.
+					Scrollbars do things, too.
+					They can be dragged with a pointer to rapidly move thru the whole area they cover.
 				</p>
 			</div>
 			<div class="abstract">
 				<p>
-					Scrollbars can be controlled by JavaScript APIs to get or set the scroll position.
+					Scrollbars can be controlled by JavaScript APIs, which can get or set the scroll position.
 				</p>
 			</div>
 			<div class="abstract">
@@ -309,41 +319,34 @@ p + .indented {
 					CSS rules can change how the scrollbars appear.
 				</p>
 			</div>
-		</div>
-		<div class="block">
-			<p>Are scrollbars available to more than the window?</p>
-			<p class="abstract">Yes. Almost any area in a webpage can have scrollbars.</p>
-		</div>
-		<div class="block">
-			<p>So then what element needs to be written to do this?</p>
 			<div class="abstract">
-				<p>No element is written to do this. It is generated automatically, or manually with CSS.</p>
+				<p>
+					And almost any area in a webpage can have scrollbars.
+				</p>
 			</div>
 		</div>
 		<div class="block">
-			<p>If it has an interface, API, and can be styled, then why is it not written as an element?</p>
-			<p><strong>Answer</strong>: It’s not written as an element because it’s not content, and because it’s conditional.</p>
+			<p>If it has an interface, an API, and it can be styled, then why is it not written as an element?</p>
+			<div class="abstract">
+				<p>It’s not written as an element because it’s not part of the document.</p>
+			</div>
 		</div>
 		<div class="block">
-			<p>What is an element that is conditional and not written out?</p>
-			<p><strong>Answer</strong>:</p>
-			<div class="indented">
-				<p>This kind of element is an <strong>affordance</strong>.</p>
+			<p>So what is it?</p>
+			<div class="abstract">
+				<p>It is an <strong>affordance</strong>.</p>
+			</div>
+			<div class="abstract">
 				<p>An affordance is how something makes itself clear how to use it.</p>
 			</div>
 		</div>
 		<div class="block">
 			<p>Are there other affordances than scrollbars in webpages?</p>
-			<p><strong>Answer</strong>: Yes. Most webpages use more affordances than just scrollbars.</p>
+			<p class="abstract">Yes. Most webpages use more affordances than just scrollbars.</p>
 		</div>
 		<div class="block">
-			<p>What is another common affordance?</p>
-			<p><strong>Answer</strong>: Most responsive websites use a ‘hamburger’ affordance to navigate menus on small screens.</p>
-		</div>
-		<p>&nbsp;</p>
-		<div class="block">
-			<p>Am I a ”strawman”?</p>
-			<p><strong>Answer</strong>: Yes.</p>
+			<p>What is another common affordance we all use?</p>
+			<p class="abstract">Most responsive websites use a ‘hamburger’ affordance to navigate menus on small screens.</p>
 		</div>
 	</body>
 </html>
