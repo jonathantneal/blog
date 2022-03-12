@@ -246,6 +246,20 @@ p + .indented {
 	opacity: 0.85;
 	padding-inline: 1em;
 }
+
+.abstract + .abstract {
+	margin-block-start: 1em;
+}
+
+.indent-1 {
+	padding-inline-start: 1em;
+}
+.indent-2 {
+	padding-inline-start: 2em;
+}
+.indent-3 {
+	padding-inline-start: 3em;
+}
 		</style>
 	</head>
 	<body>
@@ -253,47 +267,65 @@ p + .indented {
 			What are Scrollbars?
 		</h1>
 		<p class="abstract">
-			Scrollbars are elements, but you won’t find them in the source code of a page.
+			Scrollbars are like components, but you won’t find them in the source code of a page.
 		</p>
 		<p class="abstract">
-			You can interact with them, style them, and they even have an API, just like a component.
-		</p>
-		<p class="abstract">
-			So what are they?
+			If we reinvented them, would you?
 		</p>
 		<div class="block">
-			<p><strong>Question</strong>: What happens on a webpage when the text is too long for the window?</p>
-			<p><strong>Answer</strong>: The window becomes scrollable.</p>
-		</div>
-		<div class="block">
-			<p><strong>Question</strong>: As the page is scrolled, what usually appears near the window edge?</p>
-			<p><strong>Answer</strong>: A scrollbar.</p>
-		</div>
-		<div class="block">
-			<p><strong>Question</strong>: What does the scrollbar do?</p>
-			<p><strong>Answer</strong>:</p>
-			<div class="indented">
-				<p>Scrollbars show the current position of where the webpage is scrolled.</p>
-				<p>Scrollbars also have behaviors.</p>
-				<p>Scrollbars can be interactive. A finger or cursor can usually drag them to scroll more rapidly thru a page. Pushing the spacebar usually scrolls the page forward.</p>
-				<p>Scrollbars can be manipulated. There are JavaScript APIs to get and set the scroll position There are CSS rules to change how they are styled.</p>
+			<p>
+				What happens on a webpage when the text is too long for the window?
+			</p>
+			<p class="abstract">
+				The window becomes scrollable.
+				And when the window scrolls, there we find scrollbars.</p>
 			</div>
 		</div>
 		<div class="block">
-			<p><strong>Question</strong>: Are scrollbars available to more than the window?</p>
-			<p><strong>Answer</strong>: Yes. Almost any area in a webpage can do this.</p>
+			<p>What do scrollbar do?</p>
+			<div class="abstract">
+				<p>
+					Scrollbars show where a visible area exists in the context of a larger, invisible area.
+				</p>
+			</div>
+			<div class="abstract">
+				<p>
+					As the visible area moves, the scrollbars move in tandem.
+				</p>
+			</div>
+			<div class="abstract">
+				<p>
+					Scrollbars are interactive, too.
+					They can be dragged with a pointer to rapidly move thru the entire area they cover.
+				</p>
+			</div>
+			<div class="abstract">
+				<p>
+					Scrollbars can be controlled by JavaScript APIs to get or set the scroll position.
+				</p>
+			</div>
+			<div class="abstract">
+				<p>
+					CSS rules can change how the scrollbars appear.
+				</p>
+			</div>
 		</div>
 		<div class="block">
-			<p><strong>Question</strong>: What element needs to be written to do this?</p>
-			<p><strong>Answer</strong>: No element is written to do this. It is generated automatically, or manually with CSS.</p>
+			<p>Are scrollbars available to more than the window?</p>
+			<p class="abstract">Yes. Almost any area in a webpage can have scrollbars.</p>
 		</div>
-		<p>🤨</p>
 		<div class="block">
-			<p><strong>Question</strong>: If it has an interface, API, and can be styled, then why is it not written as an element?</p>
+			<p>So then what element needs to be written to do this?</p>
+			<div class="abstract">
+				<p>No element is written to do this. It is generated automatically, or manually with CSS.</p>
+			</div>
+		</div>
+		<div class="block">
+			<p>If it has an interface, API, and can be styled, then why is it not written as an element?</p>
 			<p><strong>Answer</strong>: It’s not written as an element because it’s not content, and because it’s conditional.</p>
 		</div>
 		<div class="block">
-			<p><strong>Question</strong>: What is an element that is conditional and not written out?</p>
+			<p>What is an element that is conditional and not written out?</p>
 			<p><strong>Answer</strong>:</p>
 			<div class="indented">
 				<p>This kind of element is an <strong>affordance</strong>.</p>
@@ -301,16 +333,16 @@ p + .indented {
 			</div>
 		</div>
 		<div class="block">
-			<p><strong>Question</strong>: Are there other affordances than scrollbars in webpages?</p>
+			<p>Are there other affordances than scrollbars in webpages?</p>
 			<p><strong>Answer</strong>: Yes. Most webpages use more affordances than just scrollbars.</p>
 		</div>
 		<div class="block">
-			<p><strong>Question</strong>: What is another common affordance?</p>
+			<p>What is another common affordance?</p>
 			<p><strong>Answer</strong>: Most responsive websites use a ‘hamburger’ affordance to navigate menus on small screens.</p>
 		</div>
 		<p>&nbsp;</p>
 		<div class="block">
-			<p><strong>Question</strong>: Am I a ”strawman”?</p>
+			<p>Am I a ”strawman”?</p>
 			<p><strong>Answer</strong>: Yes.</p>
 		</div>
 	</body>
