@@ -4,27 +4,26 @@
 		<meta name="viewport" content="width=device-width" />
 		<title>What are Scrollbars?</title>
 		<style>
-html {
-	-webkit-print-color-adjust: exact;
-}
-
 * {
 	box-sizing: border-box;
 	-webkit-print-color-adjust: exact;
 }
 
-html,
-body {
+:where(html, body) {
 	margin: 0;
 	padding: 0;
 }
 
-body {
+:where(html) {
+	-webkit-print-color-adjust: exact;
+}
+
+:where(body) {
 	font: 100%/1.5 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 @media screen {
-	body {
+	:where(body) {
 		color: rgb(55, 53, 47);
 		margin-block: 2em;
 		margin-inline: auto;
@@ -33,33 +32,31 @@ body {
 	}
 }
 
-a, a.visited {
+:where(a) {
 	color: inherit;
 	text-decoration: underline;
 }
 
-h1,
-h2,
-h3 {
+:where(h1, h2, h3) {
 	letter-spacing: -0.01em;
 	line-height: 1.2;
 	font-weight: 600;
 	margin-bottom: 0;
 }
 
-h1 {
+:where(h1) {
 	font-size: 2.5rem;
 	font-weight: 700;
 	margin-top: 0;
 	margin-bottom: 0.75em;
 }
 
-h2 {
+:where(h2) {
 	font-size: 2rem;
 	margin-top: 1.5rem;
 }
 
-h3 {
+:where(h3) {
 	font-size: 1.25rem;
 	margin-top: 1.25rem;
 }
@@ -101,8 +98,24 @@ hr {
 	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
 }
 
-img {
+:where(img) {
+	/* display: block;
+	margin: 0 auto; */
 	max-width: 100%;
+}
+
+:where(img.inline-start) {
+	float: inline-start;
+	margin-block-start: calc(1em + var(--bump, 0));
+	margin-block-end: 1em;
+	margin-inline-end: 1em;
+}
+
+:where(img.inline-end) {
+	float: inline-end;
+	margin-block-start: calc(1em + var(--bump, 0));
+	margin-block-end: 1em;
+	margin-inline-start: 1em;
 }
 
 @media print {
@@ -188,7 +201,7 @@ p {
 	margin-bottom: 0.5em;
 }
 
-code {
+:where(code) {
 	background: rgba(135, 131, 120, 0.15);
 	border-radius: 3px;
 	padding: 0.2em 0.4em;
@@ -197,15 +210,41 @@ code {
 	tab-size: 2;
 }
 
-code {
+:where(code) {
 	color: #eb5757;
 }
 
 blockquote {
-	font-size: 1.25em;
 	margin: 1em 0;
 	padding-left: 1em;
 	border-left: 3px solid rgb(55, 53, 47);
+}
+
+:where(pre) {
+	background: #0a1922;
+	border-radius: .25em;
+	color: #ddd;
+	font: 1em/1.5 Consolas,Monaco,"Andale Mono","Ubuntu Mono",monospace;
+	margin: 2em 0;
+	overflow: auto;
+	padding: 1em 2em;
+	tab-size: 4;
+}
+
+:where(pre code) {
+	font-size: 100%;
+}
+
+:where(pre .comment) {
+	color: #789dae;
+}
+
+:where(pre .selector) {
+	color: #f07178;
+}
+
+:where(pre .property) {
+	color: #80cbc4;
 }
 
 a.subtle {
@@ -251,18 +290,8 @@ p + .indented {
 	padding-inline: 1em;
 }
 
-.abstract + .abstract {
+:where(* + .abstract) {
 	margin-block-start: 1em;
-}
-
-.indent-1 {
-	padding-inline-start: 1em;
-}
-.indent-2 {
-	padding-inline-start: 2em;
-}
-.indent-3 {
-	padding-inline-start: 3em;
 }
 		</style>
 	</head>
@@ -274,17 +303,16 @@ p + .indented {
 			Scrollbars are elements, but there is no <code>&lt;scrollbar&gt;</code> element.
 		</p>
 		<p class="abstract">
-			We don’t use a <code>&lt;scroll&gt;</code> element.
-			We make things <em>scrollable</em>.
-			We <em>give</em> things scrollbars.
+			And we don’t use a <code>&lt;scroll&gt;</code> element.
 		</p>
 		<p class="abstract">
-			So they’re <em>like</em> components...<br />
-			<span style="display:block;text-align:right">...but <em>not quite</em> components.</span>
+			We make things <em>scrollable</em>.<br />
+			We <em>give</em> things scrollbars.<br />
 		</p>
 		<hr />
 		<div class="block">
 			<p>
+				Review:
 				What happens on a webpage when the text is too long for the window?
 			</p>
 			<p class="abstract">
@@ -302,6 +330,7 @@ p + .indented {
 					Scrollbars show where a visible area is positioned in the context of a larger, not fully-visible area.
 				</p>
 			</div>
+			<img src="scroll-anatomy.png" alt="anatomy of a scrollbar" class="inline-end" style="--bump:0.5em" />
 			<div class="abstract">
 				<p>
 					As we scroll and the visible area shifts, scrollbars reflect the change.
@@ -318,17 +347,26 @@ p + .indented {
 					Scrollbars can be controlled by JavaScript APIs, which can get or set the scroll position.
 				</p>
 			</div>
-			<div>
-				<img src="scrollbar-anatomy.png" alt="screenshot of scrollbars" />
-			</div>
 			<div class="abstract">
 				<p>
 					CSS rules can change how the scrollbars appear.
 				</p>
 			</div>
+			<pre><span class="selector">html</span> {
+	<span class="property">scrollbar-color</span>: blue white;
+	<span class="property">scrollbar-width</span>: thin;
+}
+
+<span class="selector">::-webkit-scrollbar</span> {
+	<span class="property">background-color</span>: white;
+}
+
+<span class="selector">::-webkit-scrollbar-thumb</span> {
+	<span class="property">background</span>: blue;
+}</pre>
 			<div class="abstract">
 				<p>
-					And almost any area in a webpage can have scrollbars.
+					And almost any element can use them.
 				</p>
 			</div>
 		</div>
@@ -338,15 +376,17 @@ p + .indented {
 				How is it not a component?
 			</p>
 			<p class="abstract">
-				It’s not part of the document.
+				Because it is not part of the document.
 			</p>
 			<p class="abstract">
-				It’s not content.
-				It’s a way to experience content.
+				Because it is not content.
 			</p>
 		</div>
 		<div class="block">
 			<p>So then what is it?</p>
+			<div class="abstract">
+				<p>It is a way to experience content.</p>
+			</div>
 			<div class="abstract">
 				<p>It is an <strong>affordance</strong>.</p>
 			</div>
