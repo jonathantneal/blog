@@ -196,7 +196,7 @@ input[type="checkbox"] {
 	vertical-align: middle;
 }
 
-p {
+:where(p) {
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
 }
@@ -293,12 +293,35 @@ p + .indented {
 :where(* + .abstract) {
 	margin-block-start: 1em;
 }
+
+:where(.info) {
+	box-shadow:
+		0 -1px 0 0 #ddd,
+		0 1px 0 0 #ddd;
+	display: flex;
+	font-weight: 300;
+	margin-block: -0.5em 0.5em;
+	padding: 0.25em;
+	gap: 2em;
+}
+
+:where(.info > *) {
+	flex-grow: 1;
+}
+
+:where(.info > :last-child) {
+	text-align: right;
+}
 		</style>
 	</head>
 	<body>
 		<h1>
 			What are Scrollbars?
 		</h1>
+		<p class="info">
+			<span class="info-author">Jonathan Neal</span>
+			<span class="info-date">March 14, 2022</span>
+		</p>
 		<p class="abstract">
 			Scrollbars are elements, but there is no <code>&lt;scrollbar&gt;</code> element.
 		</p>
