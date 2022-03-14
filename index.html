@@ -6,6 +6,54 @@
 		<title>The Jon Neal Blog</title>
 		<meta name="description" content="The Jon Neal Blog" />
 		<meta property="og:type" content="website" />
+		<style>
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+:where(html, body) {
+	margin: 0;
+	padding: 0;
+}
+
+:where(html) {
+	-webkit-print-color-adjust: exact;
+}
+
+:where(body) {
+	font: 100%/1.5 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+@media screen {
+	:where(body) {
+		color: rgb(55, 53, 47);
+		margin-block: 2em;
+		margin-inline: auto;
+		padding-inline: 2em;
+		max-width: 34rem;
+	}
+}
+
+:where(a) {
+	color: inherit;
+	text-decoration: underline;
+}
+
+:where(h1, h2, h3) {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+:where(h1) {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+		</style>
 	</head>
 	<body>
 		<h1>The Jon Neal Blog</h1>
