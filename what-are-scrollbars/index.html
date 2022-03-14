@@ -247,6 +247,10 @@ blockquote {
 	color: #80cbc4;
 }
 
+:where(pre .tag) {
+	color: #a7925a;
+}
+
 a.subtle {
 	color: #7757eb;
 }
@@ -437,7 +441,7 @@ p + .indented {
 		</h2>
 		<div class="block">
 			<p class="abstract">
-				Most webpages use more affordances than just scrollbars.
+				Most webpages use more affordances than just scrollbars, too.
 			</p>
 		</div>
 		<div class="block">
@@ -448,19 +452,42 @@ p + .indented {
 				<img src="mobile-navigation.png" alt="mobile navigation affordance" />
 			</div>
 			<p class="abstract">
-				Responsive websites create ‘hamburger menus’ to navigate menus on narrow screens.
+				Responsive websites create ‘hamburger’ menus to navigate menus on narrow screens.
 			</p>
+			<pre><span class="tag">&lt;input type="checkbox" class="hamburger"></span>
+<span class="tag">&lt;nav></span>
+	<span class="tag">&lt;ul></span>
+		<span class="tag">&lt;li>
+			&lt;a href="/"></span>Home<span class="tag">&lt;/a>
+		&lt;/li></span>
+		<span class="tag">&lt;li>
+			&lt;a href="/about/"></span>About Us<span class="tag">&lt;/a>
+		&lt;/li></span>
+		<span class="tag">&lt;li>
+			&lt;a href="/pricing/"></span>Pricing<span class="tag">&lt;/a>
+		&lt;/li></span>
+	<span class="tag">&lt;/ul></span>
+<span class="tag">&lt;/nav></span></pre>
+			<p>
+				On narrow screens, there is less space to present a full menu,
+				and so a conditional collapse (the ‘hamburger’ button) controls whether the menu displays.
+			</p>
+			<pre><span class="selector">@media only screen and (min-width: 700px)</span> {
+	<span class="selector">#hamburger:checked ~ nav</span> {
+		<span class="property">max-height</span>: 100vh;
+	}
+}</pre>
 			<p class="abstract">
-				Affordances are like on-demand components.
+				On the web, affordances let us present <em>regular</em> content with different controls for consuming it.
 			</p>
 			<div>
 				<img src="screenshot-tabset.webp" alt="tabs affordance" />
 			</div>
 			<p class="abstract">
-				Sections of content are organized into panels, with headings presented as a bar of ‘tabs’.
+				Sections of content are organized into panels, with headings presented as a bar of <strong>tabs</strong>.
 			</p>
 			<p class="abstract">
-				On narrower screens, that same content might present better as ‘accordions’.
+				On narrower screens, that same content might present better as <strong>accordions</strong>.
 			</p>
 			<div>
 				<img src="screenshot-accordion.webp" alt="accordion affordance" />
@@ -468,15 +495,6 @@ p + .indented {
 			<p class="abstract">
 				Because things can have more than one affordance.
 			</p>
-			<hr />
-			<h2>
-				Coding Affordances
-			</h2>
-			<p>&nbsp;</p>
-			<p class="abstract">
-				Coming soon.
-			</p>
-			<p>&nbsp;</p>
 		</div>
 	</body>
 </html>
