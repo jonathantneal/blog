@@ -1,0 +1,16 @@
+---
+import './Footer.css'
+import HeaderLink from './HeaderLink.astro';
+
+const today = new Date()
+---
+<footer class="footer">
+	<p class="-copyright">
+		&copy; {today.getFullYear()} Jonathan Neal
+	</p>
+	<nav class="-nav">
+		<HeaderLink href="/blog/">Blog</HeaderLink>
+		<HeaderLink href="https://github.com/jonathantneal" target="_blank">GitHub</HeaderLink>
+		<HeaderLink href="https://twitter.com/jon_neal" target="_blank">Twitter</HeaderLink>
+	</nav>
+</footer>

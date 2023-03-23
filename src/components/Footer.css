@@ -1,0 +1,17 @@
+.footer {
+	/* Layout */
+	padding: 2rem;
+
+	/* Text */
+	text-align: center;
+}
+
+.footer .-nav {
+	display: flex;
+
+	/* Layout */
+	flex-flow: wrap row;
+	gap: 1.25rem;
+	justify-content: center;
+	margin-inline: auto;
+}

@@ -1,0 +1,22 @@
+.header {
+	display: flex;
+
+	/* Layout */
+	flex-flow: column;
+	gap: 1.25rem;
+	align-items: center;
+}
+
+.header .-heading {
+	margin-block: 0;
+}
+
+.header .-nav {
+	display: flex;
+
+	/* Layout */
+	flex-flow: wrap row;
+	gap: 1.25rem;
+	justify-content: center;
+	margin-inline: auto;
+}

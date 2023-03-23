@@ -1,0 +1,160 @@
+.blog {
+	/* Layout */
+	margin-block: 2em;
+	margin-inline: auto;
+	max-width: 34em;
+	padding-inline: 2em;
+}
+
+.blog-title {
+	/* Layout */
+	margin-block: 0 0.75em;
+
+	/* Text */
+	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+.blog :where(h3) {
+	/* Layout */
+	margin-top: 1.5rem;
+
+	/* Text */
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.blog :where(p) {
+	/* Layout */
+	margin-block: 1rem;
+	padding-inline: 1rem;
+
+	/* Text */
+	font-size: 1.25rem;
+	font-weight: 300;
+}
+
+.blog :where(img:only-child) {
+	display: block;
+
+	/* Layout */
+	height: auto;
+	margin-block: 2rem;
+	margin-inline: auto;
+	max-width: 100%;
+}
+
+.blog :where(small) {
+	/* Text */
+	font-size: 90%;
+	line-height: calc(100% / 9 * 10 * 1.5);
+
+	/* Appearance */
+	opacity: 90%;
+}
+
+.blog :where(li) {
+	/* Layout */
+	margin-block: 1rem;
+
+	/* Text */
+	font-size: 1.25rem;
+	font-weight: 300;
+}
+
+.blog :where(blockquote) {
+	/* Layout */
+	margin: 1rem 0;
+	padding-left: 0.875rem;
+
+	/* Layout */
+	box-shadow: 3px 0 0 0 hsl(45 8% 20%) inset;
+}
+
+.blog :where(hr) {
+	display: block;
+
+	/* Layout */
+	height: 1px;
+	margin-block: 2rem;
+	width: 100%;
+
+	/* Appearance */
+	background: transparent;
+	border-style: none;
+	box-shadow: hsl(45 8% 20% / 9%) 0 1px 0 0 inset;
+	visibility: visible;
+}
+
+/* Directives */
+
+.blog :where(.prompt p) {
+	/* Layout */
+	padding-inline: 0;
+
+	/* Text */
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.blog :where(.standalone p) {
+	/* Layout */
+	margin-block: 4rem;
+
+	/* Text */
+	font-size: 1.5rem;
+}
+
+/* Code Blocks */
+
+.blog :where(pre[class]) {
+	overflow: auto;
+
+	/* Layout */
+	margin: 2rem 0;
+	padding: 1rem 2rem;
+
+	/* Text */
+	font: 1em/1.5 ui-monospace;
+
+	/* Appearance */
+	background: hsl(203 55% 9%);
+	border-radius: .25rem;
+	color: hsl(0 0% 87%);
+}
+
+.blog :where(pre[class] > code:only-child) {
+	font-family: inherit;
+}
+
+.token:where(.comment) {
+	color: hsl(0 0% 70%);
+}
+
+.token:where(.function, .selector) {
+	color: hsl(20 100% 75%);
+}
+
+.token:where(.property, .attr-name) {
+	color: hsl(190 70% 60%);
+}
+
+.token:where(.tag) {
+	color: hsl(45 50% 70%);
+}
+
+.token:where(.atrule) {
+	color: hsl(300 90% 90%);
+}
+
+.token:where(.atrule .rule) {
+	color: hsl(300 80% 75%);
+}
+
+.token:where(.string, .attr-value) {
+	color: hsl(150 60% 60%);
+}
+
+.token:where(.punctuation) {
+	opacity: 60%;
+}

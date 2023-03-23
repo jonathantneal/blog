@@ -1,0 +1,16 @@
+---
+import './Header.css'
+
+import HeaderLink from './HeaderLink.astro'
+import { SITE_TITLE } from '../consts'
+---
+<header class="header">
+	<h2 class="-heading">
+		{SITE_TITLE}
+	</h2>
+	<nav class="-nav">
+		<HeaderLink href="/blog/">Blog</HeaderLink>
+		<HeaderLink href="https://github.com/jonathantneal" target="_blank">GitHub</HeaderLink>
+		<HeaderLink href="https://twitter.com/jon_neal" target="_blank">Twitter</HeaderLink>
+	</nav>
+</header>

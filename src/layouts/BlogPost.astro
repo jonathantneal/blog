@@ -1,0 +1,35 @@
+---
+import './BlogPost.css'
+import type { CollectionEntry } from 'astro:content'
+import BaseHead from '../components/BaseHead.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Byline from 'src:components/Byline.astro'
+
+type Props = CollectionEntry<'blog'>['data']
+
+const attrs = { ...Astro.props }
+---
+<html lang="en">
+	<head>
+		<BaseHead title={attrs.title} description={attrs.description} image={attrs.image} />
+	</head>
+
+	<body>
+		<Header />
+
+		<main class="blog">
+			<article itemscope itemtype="https://schema.org/Article">
+				<h1 class="blog-title" itemprop="name headline">{
+					attrs.title
+				}</h1>
+
+				<Byline published={attrs.published} updated={attrs.updated || attrs.published} />
+
+				<slot />
+			</article>
+		</main>
+
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,22 @@
+---
+import Time from 'src:components/Time.astro';
+import './Byline.css'
+
+export interface Props {
+	published: string;
+	updated: string;
+}
+
+const attrs = { ...Astro.props }
+---
+<div class="date-byline">
+	<p class="-published">
+		<span>Published</span>
+		<Time class="date-published">{attrs.published}</Time>
+	</p>
+
+	<p class="-updated">
+		<span>Last updated</span>
+		<Time class="date-modified">{attrs.updated}</Time>
+	</p>
+</div>

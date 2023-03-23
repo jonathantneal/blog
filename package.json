@@ -1,0 +1,25 @@
+{
+	"name": "",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"start": "astro dev",
+		"build": "astro build",
+		"serve": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "^0.18.2",
+		"@astrojs/rss": "^2.3.1",
+		"@astrojs/sitemap": "^1.2.1",
+		"@typescript-eslint/eslint-plugin": "^5.56.0",
+		"@typescript-eslint/parser": "^5.56.0",
+		"astro": "^2.1.5",
+		"eslint": "^8.36.0",
+		"eslint-config-dev": "^3.2.0",
+		"remark-directive": "^2.0.1"
+	},
+	"eslintConfig": {
+		"extends": "dev/astro"
+	}
+}

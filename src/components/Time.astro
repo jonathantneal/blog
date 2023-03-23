@@ -1,0 +1,16 @@
+---
+/// <reference types="astro/astro-jsx" />
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {}
+
+const dateString = await Astro.slots.render('default')
+const date = new Date(dateString)
+const attrs = Astro.props
+---
+<time {...attrs} datetime={date.toISOString()}>{
+	date.toLocaleDateString('en-us', {
+		year: 'numeric',
+		month: 'short',
+		day: 'numeric',
+	})
+}</time>

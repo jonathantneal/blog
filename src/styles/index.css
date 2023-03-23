@@ -1,0 +1,44 @@
+.index {
+	display: flex;
+
+	/* Layout */
+	align-items: center;
+	gap: 2em;
+	margin-block: 2rem;
+	margin-inline: auto;
+	max-width: 34em;
+	padding: 0.25em;
+
+	/* Text */
+	font-weight: 300;
+
+	/* Appearance */
+	box-shadow: 0 -1px 0 0 hsl(0 0% 87%), 0 1px 0 0 hsl(0 0% 87%);
+}
+
+.index ul {
+	display: flex;
+
+	/* Layout */
+	flex-grow: 1;
+
+	/* Layout */
+	align-items: center;
+	flex-flow: nowrap column;
+	margin-block: 0;
+	padding-inline-start: 0;
+
+	/* Appearance */
+	list-style: none;
+}
+
+.index :where(li) {
+	display: flex;
+
+	gap: 1.25rem;
+}
+
+.index :where(ul li:last-child) {
+	/* Layout */
+	text-align: right;
+}

@@ -1,0 +1,8 @@
+.DS_Store
+.astro/
+dist/
+node_modules/
+
+*.log*
+*.env*
+*-lock.*
