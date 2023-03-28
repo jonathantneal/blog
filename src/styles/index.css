@@ -16,14 +16,13 @@
 	box-shadow: 0 -1px 0 0 hsl(0 0% 87%), 0 1px 0 0 hsl(0 0% 87%);
 }
 
-.index ul {
+.index :where(ul) {
 	display: flex;
 
 	/* Layout */
 	flex-grow: 1;
 
 	/* Layout */
-	align-items: center;
 	flex-flow: nowrap column;
 	margin-block: 0;
 	padding-inline-start: 0;
@@ -33,12 +32,19 @@
 }
 
 .index :where(li) {
-	display: flex;
+	display: grid;
 
-	gap: 1.25rem;
+	/* Layout */
+	gap: 0.5rem;
+	grid-template-columns: max-content auto max-content;
 }
 
 .index :where(ul li:last-child) {
 	/* Layout */
 	text-align: right;
+}
+
+.index .-spacer {
+	background: none 0 1em repeat-x;
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="3" viewBox="0 0 13 3" opacity="75%"><circle cx="11.5" cy="1.5" r="1.5" /></svg>');
 }

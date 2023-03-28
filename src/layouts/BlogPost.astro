@@ -5,6 +5,7 @@ import BaseHead from '../components/BaseHead.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import Byline from 'src:components/Byline.astro'
+import NextBlog from 'src:components/NextBlog.astro'
 
 type Props = CollectionEntry<'blog'>['data']
 
@@ -29,6 +30,8 @@ const attrs = { ...Astro.props }
 				<slot />
 			</article>
 		</main>
+
+		<NextBlog {...attrs} />
 
 		<Footer />
 	</body>

@@ -1,6 +1,6 @@
 ---
 import './Footer.css'
-import HeaderLink from './HeaderLink.astro';
+import Link from 'src:components/Link.astro'
 
 const today = new Date()
 ---
@@ -9,8 +9,8 @@ const today = new Date()
 		&copy; {today.getFullYear()} Jonathan Neal
 	</p>
 	<nav class="-nav">
-		<HeaderLink href="/blog/">Blog</HeaderLink>
-		<HeaderLink href="https://github.com/jonathantneal" target="_blank">GitHub</HeaderLink>
-		<HeaderLink href="https://twitter.com/jon_neal" target="_blank">Twitter</HeaderLink>
+		<Link href="/blog/">Blog</Link>
+		<Link href="https://github.com/jonathantneal">GitHub</Link>
+		<Link href="https://twitter.com/jon_neal">Twitter</Link>
 	</nav>
 </footer>

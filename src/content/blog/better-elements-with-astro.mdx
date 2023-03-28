@@ -1,0 +1,280 @@
+---
+title: 'Better Elements with Astro'
+description: 'Two relatively-small patterns that I frequently include in any new project.'
+published: 'March 28 2022'
+updated: 'March 28 2022'
+image: '/blog/images/embed-better-elements-with-astro.webp'
+---
+
+:::notice
+Psst.
+Usability and accessibility experts **generally advise against opening links in new windows**.
+
+This article has been updated to remove that recommendation.
+You can read more about why such behavior creates unhelpful and unpredictable experiences in [this wonderful article](https://adrianroselli.com/2020/02/link-targets-and-3-2-5.html).
+
+I’m very grateful to [Ben](https://benmyers.dev/) for gently pointing this out to me.
+:::
+
+If you write HTML, perhaps you can relate:
+
+- I want `<a>` links to include `rel="noopener"` if the `href` is external.
+- I want plain `<button>` elements to behave like `<button type="button">`.
+
+Both of these desires can be fulfilled when we build them with [Astro](https://docs.astro.build/en/core-concepts/astro-components/).
+
+---
+
+**Astro Components** are like reusable templates of **web stuff**.
+
+:::prompt
+What is ‘web stuff’?
+:::
+
+- **HTML**, if that’s what we want.
+- **CSS**, if that’s what we want.
+- **JS**, if that’s what we want.
+- **HTTP**, if that’s what we want.
+
+Astro components can represent plain content.
+
+```astro
+<details class="bad-joke -really -really-bad">
+	<summary>
+		In Astro, your HTML can be so plain
+	</summary>
+	
+	You may owe royalties to the Amish.
+</details>
+```
+
+... or cutting-edge, client-side functionality.
+
+```html
+<script>
+// https://en.wikipedia.org/wiki/Konami_Code
+const konamiCode = [
+	'ArrowUp', 'ArrowUp',
+	'ArrowDown', 'ArrowDown',
+	'ArrowLeft', 'ArrowRight',
+	'ArrowLeft', 'ArrowRight',
+	'KeyB', 'KeyA',
+]
+
+let index = 0
+
+// confetti if the user enters the konami code
+document.addEventListener('keydown', (event) => {
+	if (konamiCode[index] === event.code) {
+		++index
+	} else {
+		index = 0
+	}
+
+	if (index === konamiCode.length) {
+		import('https://esm.run/canvas-confetti').then(
+			module => module.default()
+		)
+	}
+})
+</script>
+```
+
+... or our favorite server-side tutorial (<small>the counter</small>),
+or any combination of these things.
+
+```astro
+---
+const count = Astro.cookies.get('count') || '0'
+
+const increment = count.number() + 1
+
+Astro.cookies.set('count', increment)
+---
+<h1>
+	Count ({ increment })
+</h1>
+```
+
+Astro is like a better version of PHP with the entire JavaScript WebAPI [built-in](https://github.com/withastro/astro/tree/main/packages/webapi#features).
+
+Here are some ways we can use Astro to provide better defaults to plain HTML elements.
+
+- [Better Buttons](#better-buttons)
+- [Better Links](#better-links)
+- [Bonus: Better Types](#better-types)
+
+---
+
+### Better Buttons
+
+:::prompt
+Let’s build a better `<button>`; one that behaves like `<button type="button">` by default.
+:::
+
+In Astro, we can create a `<button>` element that sets the `type` attribute to be `"button"`.
+
+We can place `Astro.props` at the end to pass through any attributes we prefer.
+
+```astro { "file": "/src/components/Button.astro" }
+<button
+	type="button"
+	{...Astro.props}
+><slot /></button>
+```
+
+```astro { "file": "/src/pages/index.astro" }
+---
+import Button from '/src/components/Button.astro'
+---
+<Button class="btn">Press Me<Button>
+```
+
+That’s it!
+Astro will render the button with our default `type` and our unique `class`.
+
+```html { "file": "/dist/index.html" }
+<button type="button" class="btn">Press Me<button>
+```
+
+... and if the `type` is overridden, it still works.
+
+```astro { "file": "/src/pages/index.astro" }
+---
+import Button from '/src/components/Button.astro'
+---
+<Button type="submit" class="btn">Submit Me<Button>
+```
+
+```html { "file": "/dist/index.html" }
+<button type="submit" class="btn">Submit Me<button>
+```
+
+### Better Links
+
+:::prompt
+Let’s build a better `<a href>`; one that opens links in new tabs automatically when the `href` is external.
+:::
+
+In Astro, we can create an `<a>` element that adds specific `target` and `rel` attributes whenever the `href` attribute resolves to an external `host`.
+
+```astro { "file": "/src/components/Link.astro" }
+---
+const url = new URL(Astro.props, Astro.url)
+const isExternal = url.host !== Astro.url.host
+---
+<a
+	rel={isExternal ? 'noopener' : null}
+	{...Astro.props}
+><slot /></a>
+```
+
+Here is how we can use it.
+
+```astro { "file": "/src/pages/index.astro" }
+---
+import Link from '/src/components/Link.astro'
+---
+<Link href="./relative">Relative</Link>
+<Link href="/absolute">Absolute</Link>
+<Link href="//example.com/external">External</Link>
+```
+
+That’s it!
+Astro will render external links with the additional attributes.
+
+```html { "file": "/dist/index.html" }
+<a href="./relative">Relative</a>
+<a href="/absolute">Absolute</a>
+<a rel="noopener"
+	 href="//example.com/external">External</a>
+```
+
+We can also check if `href` resolves to the current page,
+and add an `aria-current` attribute when it does. 
+The `href` attribute will still pass through `Astro.props`.
+
+```astro { "file": "/src/components/Link.astro" }
+---
+const url = new URL(Astro.props.href, Astro.url)
+const isExternal = url.host !== Astro.url.host
+const isCurrent = url.href === Astro.url.href
+---
+<a
+	aria-current={isCurrent ? 'page' : null}
+	rel={isExternal ? 'noopener' : null}
+	{...Astro.props}
+><slot /></a>
+```
+
+Here is how we can use it.
+
+```astro { "file": "/src/pages/index.astro" }
+---
+import Link from '/src/components/Link.astro'
+---
+<Link href="./relative">Relative</Link>
+<Link href="/absolute">Absolute</Link>
+<Link href="/">Current</Link>
+<Link href="//example.com/external">External</Link>
+```
+
+That’s it!
+Astro will add `aria-current="page"` to links that represent the current page.
+
+```html { "file": "/dist/index.html" }
+<a href="./relative">Relative</a>
+<a href="/absolute">Absolute</a>
+<a href="/"
+	 aria-current="page">Current</a>
+<a href="//example.com/external"
+	 rel="noopener">External</a>
+```
+
+### Better Types
+
+Extending HTML elements with Astro is essentially creating new virtual elements,
+which means they won’t automatically include typing suggestions for their native contents.
+
+Thankfully, Astro includes typing utilities we can use to restore native types to our virtual elements.
+
+```astro { "file": "/src/components/Button.astro" }
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = HTMLAttributes<'button'>
+---
+<button
+	type="button"
+	{...Astro.props}
+><slot /></button>
+```
+
+Now our `<Button>` component receives the native `<button>` typing we expect.
+
+![VSCode with a Button component depicting type completion](/blog/images/typed-button-component.webp)
+
+The same is true for our `<Link>` component.
+
+```astro { "file": "/src/components/Link.astro" }
+---
+import type { HTMLAttributes } from 'astro/types'
+
+export type Props = HTMLAttributes<'a'>
+
+const url = new URL(Astro.props.href, Astro.url)
+const isExternal = url.host !== Astro.url.host
+const isCurrent = url.href === Astro.url.href
+---
+<a
+	aria-current={isCurrent ? 'page' : null}
+	rel={isExternal ? 'noopener' : null}
+	{...Astro.props}
+><slot /></a>
+```
+
+![VSCode with a Link component depicting type completion](/blog/images/typed-link-component.webp)
+
+So, that’s it.
+I know better buttons and links are just the surface of what Astro components are capable of,
+but these are two relatively-small patterns that make building **web stuff** more enjoyable for me.

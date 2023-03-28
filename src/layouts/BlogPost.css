@@ -1,3 +1,25 @@
+.nextblog {
+	display: grid;
+
+	/* Layout */
+	gap: 0.5rem;
+	grid-template-columns: max-content auto max-content;
+	margin-block: 8rem 2rem;
+	margin-inline: auto;
+	max-width: 34rem;
+	padding-inline: 2rem;
+}
+
+.nextblog > :where(:last-child) {
+	/* Layout */
+	text-align: right;
+}
+
+.nextblog > .-spacer {
+	background: none 0 1em repeat-x;
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="3" viewBox="0 0 13 3" opacity="75%"><circle cx="11.5" cy="1.5" r="1.5" /></svg>');
+}
+
 .blog {
 	/* Layout */
 	margin-block: 2em;
@@ -105,6 +127,22 @@
 	font-size: 1.5rem;
 }
 
+/* Notices */
+
+.notice {
+	/* Layout */
+	padding: 0.25rem;
+
+	/* Appearance */
+	border-radius: 0.125rem;
+	box-shadow: 0 0 0 1px inset;
+}
+
+.notice :where(p) {
+	/* Text */
+	font-size: 87.5%;
+}
+
 /* Code Blocks */
 
 .blog :where(pre[class]) {
@@ -123,8 +161,70 @@
 	color: hsl(0 0% 87%);
 }
 
+.blog :where(.code-meta + pre[class]) {
+	display: flex;
+
+	/* Appearance */
+	border-start-start-radius: 0;
+	border-start-end-radius: 0;
+}
+
+.blog :where(.code-meta dl) {
+	display: flex;
+
+	/* Layout */
+	gap: .75rem;
+	margin-block: 0 -2.5rem;
+	padding-block-start: 0.5rem;
+	padding-inline: 2rem;
+
+	/* Text */
+	font-size: calc(100% / 4 * 3);
+	line-height: calc(1 / 3 * 4 * 1.5);
+
+	/* Appearance */
+	background: hsl(203 55% 9%);
+	border-start-start-radius: .25rem;
+	border-start-end-radius: 0.25rem;
+	color: hsl(0 0% 87%);
+}
+
+.blog :where(.code-meta dt) {
+	/* Appearance */
+	color: hsl(190 70% 60%);
+}
+
+.blog :where(.code-meta dt)::after {
+	content: ":";
+}
+
+.blog :where(.code-meta dd) {
+	/* Layout */
+	margin-inline-start: 0;
+
+	/* Appearance */
+	color: hsl(150 60% 60%);
+}
+
+.blog :where(code) {
+	/* Text */
+	font-size: calc(100% / 16 * 15);
+	line-height: calc(1 / 15 * 16 * 1.5);
+}
+
+.blog :where(p code) {
+	/* Layout */
+	display: inline-block;
+}
+
 .blog :where(pre[class] > code:only-child) {
+	font-size: calc(100% / 8 * 7);
+	line-height: calc(1 / 7 * 8 * 1.5);
 	font-family: inherit;
+}
+
+.blog :where(pre[class] + :is(.code-meta, pre[class])) {
+	margin-block-start: -1rem;
 }
 
 .token:where(.comment) {
@@ -135,7 +235,7 @@
 	color: hsl(20 100% 75%);
 }
 
-.token:where(.property, .attr-name) {
+.token:where(.property, .attr-name, .constant) {
 	color: hsl(190 70% 60%);
 }
 
@@ -147,7 +247,7 @@
 	color: hsl(300 90% 90%);
 }
 
-.token:where(.atrule .rule) {
+.token:where(.atrule .rule, .keyword) {
 	color: hsl(300 80% 75%);
 }
 
@@ -155,6 +255,7 @@
 	color: hsl(150 60% 60%);
 }
 
-.token:where(.punctuation) {
+.token:where(.punctuation, .operator) {
 	opacity: 60%;
 }
+
