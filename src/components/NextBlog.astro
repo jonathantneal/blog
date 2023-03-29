@@ -1,16 +1,16 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import { getCollection } from 'astro:content'
-import HeaderLink from 'src:components/HeaderLink.astro';
+import type { Post } from 'src:consts'
+
+import './NextBlog.css'
+
+import { posts } from 'src:posts'
+import Link from 'src:components/Link.astro';
 import Time from 'src:components/Time.astro';
 
-const posts = (
-	await getCollection('blog')
-).sort(
-	(a, b) => Number(new Date(b.data.published)) - Number(new Date(a.data.published))
-)
-
-export type Props = CollectionEntry<'blog'>
+export type Props = {
+	title: string
+	published: string
+}
 
 const postIndex = posts.findIndex(
 	post => (
@@ -20,7 +20,7 @@ const postIndex = posts.findIndex(
 	)
 )
 
-const nextPost: CollectionEntry<"blog"> | null = postIndex === -1 ? null : posts.at(postIndex - 1) || null
+const nextPost: Post | null = postIndex === -1 ? null : posts.at(postIndex - 1) || null
 ---
 {
 	nextPost ? (
@@ -29,7 +29,9 @@ const nextPost: CollectionEntry<"blog"> | null = postIndex === -1 ? null : posts
 				nextPost.data.published
 			}</Time>
 			<span class="-spacer"></span>
-			<HeaderLink href={`/blog/${nextPost.slug}/`}>{nextPost.data.title}</HeaderLink>
+			<Link href={`/blog/${nextPost.slug}/`}>{
+				nextPost.data.title
+			}</Link>
 		</div>
 	) : null
 }

@@ -1,23 +1,17 @@
 ---
 import 'src:styles/index.css'
+import * as consts from 'src:consts'
 import { For } from '@astropub/flow'
 import BaseHead from 'src:components/BaseHead.astro'
 import Header from 'src:components/Header.astro'
 import Link from 'src:components/Link.astro'
-import { SITE_TITLE, SITE_DESCRIPTION } from 'src:consts'
-import { getCollection } from 'astro:content'
 import Time from 'src:components/Time.astro'
-
-const posts = (
-	await getCollection('blog')
-).sort(
-	(a, b) => Number(new Date(b.data.published)) - Number(new Date(a.data.published))
-)
+import { posts } from 'src:posts'
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={consts.SITE_LANGUAGE}>
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={consts.SITE_TITLE} description={consts.SITE_DESCRIPTION} />
 	</head>
 	<body>
 		<Header />
@@ -30,8 +24,12 @@ const posts = (
 							<Time>{
 								post.data.published
 							}</Time>
-							<span class="-spacer"></span>
-							<Link href={`/blog/${post.slug}/`}>{post.data.title}</Link>
+
+							<span class="-spacer" />
+
+							<Link href={`/blog/${post.slug}/`}>{
+								post.data.title
+							}</Link>
 						</li>
 					)
 				}</For>

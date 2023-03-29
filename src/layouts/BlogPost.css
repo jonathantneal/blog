@@ -1,25 +1,3 @@
-.nextblog {
-	display: grid;
-
-	/* Layout */
-	gap: 0.5rem;
-	grid-template-columns: max-content auto max-content;
-	margin-block: 8rem 2rem;
-	margin-inline: auto;
-	max-width: 34rem;
-	padding-inline: 2rem;
-}
-
-.nextblog > :where(:last-child) {
-	/* Layout */
-	text-align: right;
-}
-
-.nextblog > .-spacer {
-	background: none 0 1em repeat-x;
-	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="3" viewBox="0 0 13 3" opacity="75%"><circle cx="11.5" cy="1.5" r="1.5" /></svg>');
-}
-
 .blog {
 	/* Layout */
 	margin-block: 2em;
