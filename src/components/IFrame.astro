@@ -1,0 +1,23 @@
+---
+const attrs = Astro.props
+
+let srcdoc = await Astro.slots.render('default')
+
+if (!/<body[\s>]/.test(srcdoc)) {
+	srcdoc = `<!DOCTYPE html><body style=margin:0>${srcdoc}`
+}
+
+delete attrs.class
+attrs.frameborder = 0
+attrs.srcdoc = srcdoc
+attrs.style = 'width:-moz-available;width:-webkit-fill-available;width:stretch'
+attrs.onload = [
+	`new ResizeObserver(l=>this.style.height=l[0].contentRect.height+'px').observe(this.contentWindow.document.documentElement)`,
+].join(';')
+---
+<iframe {...attrs} />
+<style is:global>
+iframe[srcdoc] {
+	border: 0;
+}
+</style>

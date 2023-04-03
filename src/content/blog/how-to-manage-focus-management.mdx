@@ -1,7 +1,111 @@
 ---
-title: 'How to Manage Focus Management'
+title: 'Managing Focus Management'
 description: '...'
-published: 'January 1 3023'
-updated: 'January 1 3023'
+published: 'April 1 3023'
+updated: 'April 1 3023'
 image: '/blog/images/embed-deliciously-deferrable-dom-hydration.webp'
 ---
+
+In JavaScript, the API for returning the element that has focus is `document.activeElement`.
+
+```js
+document.activeElement
+```
+
+To be specific,
+`document.activeElement` returns the currently focused element _that is also_ confined to the current `document`.
+
+This means,
+if `document.activeElement` is some `<input>`,
+and if we switch the window or tab,
+then `document.activeElement` keeps being that `<input>`.
+
+Element focus and document focus are independent of each other.
+
+The API for returning whether the document has focus is `document.hasFocus()`.
+
+```js
+// true or false
+document.hasFocus()
+```
+
+To be specific,
+`document.hasFocus()` returns whether the document _can_ have focus,
+and not whether any element in the document _is_ focused.
+
+If nothing is focused in the document,
+then `<body>` is focused.
+
+```js
+// nothing is focused
+document.activeElement === document.body
+```
+
+- Yes, I realize that `<body>` is not _nothing_.
+- Yes, I know that `<body>` is not inherently _focusable_.
+
+:::notice
+If this behavior seems odd, it’s because [`<body>` was a focusable element](https://twitter.com/jon_neal/status/1641265454931927041) at the time the API first appeared.
+While that focusable behavior was later removed, browsers standardized its [API behavior](https://bugzilla.mozilla.org/show_bug.cgi?id=337631).
+:::
+
+
+The API for watching focus changes to the document are the `window` events of `focus` and `blur`.
+
+```js
+window.addEventListener('focus', ({ target }) => {
+	if (target !== window) return
+
+	// document has gained focused
+}, { capture: true })
+
+window.addEventListener('blur', ({ target }) => {
+	if (target !== window) return
+
+	// document has lost focused
+}, { capture: true })
+```
+
+:::notice
+DOM events propagate _downward_ — from `window` to their `target` — _before_ bubbling upward.
+
+This code uses `{ capture: true }` to observe the `focus` and `blur` events at their earliest opportunity.
+:::
+
+Our `focus` and `blur` listeners will also observe focus changes between elements.
+
+Well, most elements.
+
+If focus is moved inside the shadow root of a custom element,
+then `document.activeElement` returns the custom element.
+
+```html
+<my-tab>
+	#shadow-root
+		<button>
+			Pressable
+		</button>
+</my-tab>
+```
+
+In this example, if we focus the `<button>`,
+then `document.activeElement` will return `<my-tab>`.
+
+Using the `focus` and `blur` events, we can keep our own references
+
+
+---
+
+What if we focus an element in the ShadowDOM?
+
+
+:::notice
+All of this works the same in Firefox, with the caveat that `<html>` _is_ keyboard focusable.
+
+This allows for some fun, albeit confusing logic.
+
+For example,
+you can use the keyboard tab to focus `<html>`,
+and then click `<html>` via some empty area on the page,
+and this will report that focus moved off of `<html>` and onto `<body>`.
+:::

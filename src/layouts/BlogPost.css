@@ -34,6 +34,20 @@
 	font-weight: 300;
 }
 
+.blog :where(summary) {
+	/* Text */
+	font-size: 1.25rem;
+	font-weight: 300;
+
+	/* Appearance */
+	cursor: pointer;
+}
+
+.blog :where(summary) + pre {
+	/* Layout */
+	margin-block-start: 1rem;
+}
+
 .blog :where(img:only-child) {
 	display: block;
 

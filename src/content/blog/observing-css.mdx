@@ -1,0 +1,226 @@
+---
+title: 'Observing CSS'
+description: 'Create experiences where users define the behavior of custom interfaces in CSS.'
+published: 'April 3 2023'
+updated: 'April 3 2023'
+image: '/blog/images/embed-observing-css-properties.webp'
+---
+
+Did you know you can observe CSS properties in JS?
+
+```js
+observeStyle(someElement, '--someProperty',
+	// called whenever `--someProperty` value changes
+	(value) => {
+		console.log({ value })
+	}
+)
+```
+
+I think this is a powerful pattern.
+
+We can use this functionality to create experiences where our users define the behavior of custom interfaces within their own CSS.
+
+:::prompt
+Want to read the source?
+[Skip to the source code section](#source-code).
+:::
+
+Imagine we are building a custom navigation element,
+and we want to allow authors to define when the ‘hamburger’ experience kicks in.
+
+```html
+<a-nav>
+	<a href="/getting-started/">Getting Started</a>
+	<a href="/components/">Components</a>
+	<a href="/recipes/">Recipes</a>
+</a-nav>
+<style>
+a-nav {
+	--affordance: default;
+
+	@media (width < 640px) {
+		--affordance: disclosure;
+	}
+}
+</style>
+```
+
+In this example,
+a _‘disclosure affordance’_ is applied to the element
+at screen sizes of 640px or less.
+
+To accomplish this within our `<a-nav>` constructor,
+we can use `observeStyle` to watch the `--disclosure` property for changes.
+
+Here is a simplified example.
+
+```js
+class ANavElement extends HTMLElement {
+	constructor() {
+		super()
+
+		this.attachShadow({ mode: 'open' })
+
+		this.shadowRoot.innerHTML = [
+			`<slot name="button">`,
+				`<button aria-label="Open menu">≡</button>`,
+			`</slot>`
+		].join('')
+
+		const [ slot ] = this.shadowRoot.children
+
+		observeStyle(this, '--affordance',
+			(value) => {
+				slot.hidden = value !== 'disclosure'
+			}
+		)
+	}
+}
+```
+
+This shows or hides the disclosure button depending on whether `--affordance` has a value of `disclosure`.
+
+Let’s review how the actual observer is coded.
+
+### Source Code
+
+Jump ahead to read how it works.
+
+```js
+const observeStyle = (
+	target,
+	property,
+	callback,
+	initialValue = ''
+) => {
+	let frameId, value
+
+	const css = getComputedStyle(target)
+
+	const observer = () => {
+		frameId = requestAnimationFrame(observer)
+
+		value = css.getPropertyValue(property).trim()
+
+		if (value !== initialValue) {
+			callback(initialValue = value)
+		}
+	}
+
+	observer()
+
+	return () => cancelAnimationFrame(frameId)
+}
+```
+
+This `observeStyle` function requires 3 arguments,
+and it allows an optional 4th argument.
+
+1. Our DOM element we want to observe,
+2. Our CSS property we want to observe on that element, and,
+3. Our callback we want to run whenever that CSS property value changes.
+4. **Optionally**, the initial value of our CSS property.
+This value is otherwise an empty string.
+
+```js
+const observeStyle = (
+	target,
+	property,
+	callback,
+	initialValue = ''
+) => {}
+```
+
+Next,
+`observeStyle` uses
+`getComputedStyle` to retreive an object of all the computed CSS properties applied to our element.
+This is a live collection whose values are always up to date.
+
+```js
+const css = getComputedStyle(target)
+```
+
+Next,
+the `observer` function uses `requestAnimationFrame` to queue another run before the next frame.
+This function is called repeatedly before each repaint.
+
+```js
+let observer = () => {
+	frameId = requestAnimationFrame(observer)
+}
+```
+
+Within the `observer` function,
+`getPropertyValue` returns the value of our css property.
+This is trimmed to normalize custom property values,
+which otherwise include, for instance, leading spaces.
+
+```js
+value = css.getPropertyValue(property).trim()
+```
+
+Finally,
+if our observed value is changed, then our callback is run with the updated value.
+
+```js
+if (value !== initialValue) {
+	callback(initialValue = value)
+}
+```
+
+---
+
+Want to use this in React?
+
+<details>
+	<summary>{
+		`Here is the equivelent source code`
+	}</summary>
+```js
+
+import { useCallback, useLayoutEffect, useState } from 'react'
+
+export function useCSSProperty<T extends Element>(
+	property: string,
+	initialValue = ''
+) {
+	const [ element, setElement ] = useState<T | null>(null)
+	const [ value, setValue ] = useState(initialValue)
+
+	const ref = useCallback((element: T) => {
+		if (element !== null) {
+			setElement(element)
+		}
+	}, [])
+
+	useLayoutEffect(() => {
+		if (element === null) return
+
+		const css = getComputedStyle(element)
+
+		let frameId: number
+		let observer = () => {
+			frameId = requestAnimationFrame(observer)
+
+			const newValue = css.getPropertyValue(property).trim()
+
+			if (value !== newValue) {
+				setValue(newValue)
+			}
+		}
+
+		observer()
+
+		return () => cancelAnimationFrame(frameId)
+	}, [ element, property ])
+
+	return [ ref, value ]
+}
+```
+
+</details>
+
+---
+
+Finally, please consider all code shared in this article public domain, unless otherwise specified.
