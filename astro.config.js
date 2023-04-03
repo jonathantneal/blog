@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
-import remarkDirective from 'remark-directive'
+import configToAlias from '@astropub/config-to-alias/astro'
 import remarkDirectives from './remark-directives.js'
 import remarkCodeBlocks from './remark-codeblocks.js'
 
@@ -21,6 +21,7 @@ export default defineConfig({
 		syntaxHighlight: 'prism',
 	},
 	integrations: [
+		configToAlias(),
 		mdx(),
 		sitemap(),
 	],
