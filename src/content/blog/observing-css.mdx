@@ -1,10 +1,21 @@
 ---
 title: 'Observing CSS'
 description: 'Create experiences where users define the behavior of custom interfaces in CSS.'
-published: 'April 3 2023'
-updated: 'April 3 2023'
+published: 'April 5 2023'
+updated: 'April 5 2023'
 image: '/blog/images/embed-observing-css.webp'
 ---
+
+:::jump
+
+Jump ahead to a specific section.
+
+- [Observing CSS for Custom Navigation](#observing-css-for-custom-navigation)
+- [Source Code](#source)
+- [How It Works](#how-it-works)
+- [React Version](#react-version)
+
+:::
 
 Did you know you can observe CSS properties in JS?
 
@@ -17,14 +28,19 @@ observeStyle(someElement, '--someProperty',
 )
 ```
 
-I think this is a powerful pattern.
+I think this is a powerful pattern,
+like [style queries](https://css.oddbird.net/rwd/style/explainer/) for JS.
 
 We can use this functionality to create experiences where our users define the behavior of custom interfaces within their own CSS.
+
+<br />
 
 :::prompt
 Want to read the source?
 [Skip to the source code section](#source-code).
 :::
+
+## Observing CSS for Custom Navigation
 
 Imagine we are building a custom navigation element,
 and we want to allow authors to define when the ‘hamburger’ experience kicks in.
@@ -53,8 +69,6 @@ at screen sizes of 640px or less.
 To accomplish this within our `<a-nav>` constructor,
 we can use `observeStyle` to watch the `--disclosure` property for changes.
 
-Here is a simplified example.
-
 ```js
 class ANavElement extends HTMLElement {
 	constructor() {
@@ -79,13 +93,17 @@ class ANavElement extends HTMLElement {
 }
 ```
 
-This shows or hides the disclosure button depending on whether `--affordance` has a value of `disclosure`.
+In this simplified example,
+we show or hide the disclosure button depending on whether `--affordance` has a value of `disclosure`.
 
-Let’s review how the actual observer is coded.
+Now,
+let’s review how the actual observer is coded.
 
-### Source Code
+## Source Code
 
-Jump ahead to read how it works.
+Here is the source for the `observeStyle` function.
+
+Scroll ahead to read how we create it.
 
 ```js
 const observeStyle = (
@@ -113,6 +131,8 @@ const observeStyle = (
 	return () => cancelAnimationFrame(frameId)
 }
 ```
+
+## How It Works
 
 This `observeStyle` function requires 3 arguments,
 and it allows an optional 4th argument.
@@ -169,7 +189,7 @@ if (value !== initialValue) {
 }
 ```
 
----
+## React Version
 
 Want to use this in React?
 

@@ -15,9 +15,24 @@
 	font-weight: 700;
 }
 
+.blog :where(h2) {
+	/* Layout */
+	margin-block: 3rem 0;
+
+	/* Text */
+	font-size: 1.75rem;
+	font-weight: 300;
+}
+
+.blog :where(h2:target) {
+	/* Appearance */
+	background-color: hsl(60 100% 50% / 25%);
+	box-shadow: hsl(60 100% 50% / 25%) 0 0 0 0.75rem;
+}
+
 .blog :where(h3) {
 	/* Layout */
-	margin-top: 1.5rem;
+	margin-block-start: 1.5rem;
 
 	/* Text */
 	font-size: 1.5rem;
@@ -117,6 +132,26 @@
 
 	/* Text */
 	font-size: 1.5rem;
+}
+
+/* Jump */
+
+.blog :where(.jump) {
+	/* Layout */
+	padding: 0.25rem;
+
+	/* Appearance */
+	border-radius: 0.125rem;
+	box-shadow: hsl(60 10% 80%) 0 0 0 1px inset;
+}
+
+.blog :where(.jump p, .jump li) {
+	/* Text */
+	font-size: 1rem;
+}
+
+.blog :where(.jump li) {
+	margin-block: 0;
 }
 
 /* Notices */
