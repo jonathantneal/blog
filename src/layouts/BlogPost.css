@@ -162,7 +162,7 @@
 
 	/* Appearance */
 	border-radius: 0.125rem;
-	box-shadow: 0 0 0 1px inset;
+	box-shadow: hsl(60 10% 80%) 0 0 0 1px inset;
 }
 
 .notice :where(p) {
